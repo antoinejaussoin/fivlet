@@ -1,0 +1,13 @@
+version: '3'
+services:
+  fivlet:
+    image: antoinejaussoin/fivlet:latest
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    restart: unless-stopped
+    ports:
+      - '8080:80'
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '50m'

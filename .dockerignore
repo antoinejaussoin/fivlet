@@ -1,0 +1,7 @@
+build
+.svelte-kit
+node_modules
+Makefile
+LICENSE
+README.md
+word-builder
