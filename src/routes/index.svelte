@@ -40,7 +40,7 @@
 </svelte:head>
 
 <section>
-	{process.env.NODE_ENV === 'development' ? answer : null}
+	{process.env.NODE_ENV === 'development' ? answer : ''}
 	<div class="fixed top-0 right-0">
 		<LanguagePicker
 			value={$locale}
