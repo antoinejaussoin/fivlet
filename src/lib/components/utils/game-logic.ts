@@ -11,6 +11,10 @@ export type EventResult = {
 	alert?: ExtendedAlertData;
 };
 
+export function hasWon(entries: string[], answer: string): boolean {
+	return entries.some((entry, i) => entry === answer && i !== entries.length - 1);
+}
+
 export function processKey(
 	validWords: string[],
 	entries: string[],
@@ -30,7 +34,7 @@ export function processKey(
 		};
 	}
 
-	if (entries.some((entry, i) => entry === answer && i !== entries.length - 1)) {
+	if (hasWon(entries, answer)) {
 		return {
 			entries,
 			alert: {

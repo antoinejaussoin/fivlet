@@ -1,10 +1,12 @@
 # Fivlet
 
-This is a clone of a very famous game.
+This is a clone of a very famous game, recently bought by the New York Times.
 
 It is implemented using Svelte, for a very (very) tiny bundle and nice experience.
 
 It can be played at [fivlet.com](https://www.fivlet.com).
+
+![fivlet.com](/content/screenshot.png?raw=true 'fivlet.com')
 
 ## How to run locally
 

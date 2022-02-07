@@ -28,6 +28,11 @@
 	function handleChange(evt: CustomEvent<string[]>) {
 		entries = evt.detail;
 	}
+
+	function handleRefresh() {
+		possibleAnswers = possibleAnswers;
+		entries = [''];
+	}
 </script>
 
 <svelte:head>
@@ -35,6 +40,7 @@
 </svelte:head>
 
 <section>
+	{process.env.NODE_ENV === 'development' ? answer : null}
 	<div class="fixed top-0 right-0">
 		<LanguagePicker
 			value={$locale}
@@ -49,7 +55,7 @@
 		<Board {answer} {entries} />
 	</div>
 
-	<Entries on:change={handleChange} {entries} {answer} />
+	<Entries on:change={handleChange} on:refresh={handleRefresh} {entries} {answer} />
 </section>
 
 <style>

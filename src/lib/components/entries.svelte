@@ -2,9 +2,10 @@
 	import { createEventDispatcher } from 'svelte';
 	import { message } from '../store';
 	import getKeyboard from './utils/get-keyboard';
-	import { processKey } from './utils/game-logic';
+	import { hasWon, processKey } from './utils/game-logic';
 	import { _, locale } from 'svelte-i18n';
 	import { getValidWords } from '../words/get-words';
+	import Refresh from './refresh-icon.svelte';
 
 	export let entries: string[] = [];
 	export let answer: string;
@@ -15,6 +16,8 @@
 		$_('keyboard.third')
 	]);
 
+	$: won = hasWon(entries, answer);
+
 	async function pressKey(key: string) {
 		const words = await getValidWords($locale);
 		const result = processKey(words, entries, answer, key);
@@ -24,19 +27,20 @@
 				message: $_(result.alert.message, { values: result.alert.parameters })
 			});
 		}
-		dispatch('change', result.entries);
+		dispatchChange('change', result.entries);
 	}
 
 	function handleKeypress(evt: KeyboardEvent) {
 		pressKey(evt.key);
 	}
 
-	const dispatch = createEventDispatcher<{ change: string[] }>();
+	const dispatchChange = createEventDispatcher<{ change: string[] }>();
+	const dispatchRefresh = createEventDispatcher();
 </script>
 
 <svelte:window on:keydown={handleKeypress} />
 
-<div class="flex flex-col gap-2">
+<div class="relative flex flex-col gap-2">
 	{#each keyboard as row}
 		<div class="flex justify-center gap-2">
 			{#each row as key}
@@ -53,6 +57,14 @@
 			{/each}
 		</div>
 	{/each}
+	{#if won}
+		<div
+			on:click={() => dispatchRefresh('refresh')}
+			class="absolute top-0 left-0 flex h-full w-full cursor-pointer items-center justify-center text-6xl text-green-800 backdrop-blur-sm"
+		>
+			<Refresh />
+		</div>
+	{/if}
 </div>
 
 <style>
