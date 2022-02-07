@@ -15,6 +15,14 @@ export function hasWon(entries: string[], answer: string): boolean {
 	return entries.some((entry, i) => entry === answer && i !== entries.length - 1);
 }
 
+export function hasLost(entries: string[], answer: string): boolean {
+	return entries.length > ROWS_COUNT && !hasWon(entries, answer);
+}
+
+export function hasEnded(entries: string[], answer: string): boolean {
+	return hasWon(entries, answer) || hasLost(entries, answer);
+}
+
 export function processKey(
 	validWords: string[],
 	entries: string[],
@@ -23,7 +31,7 @@ export function processKey(
 ): EventResult {
 	const current = entries[entries.length - 1];
 
-	if (entries.length > ROWS_COUNT) {
+	if (hasLost(entries, answer)) {
 		return {
 			entries,
 			alert: {

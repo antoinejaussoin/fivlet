@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { message } from '../store';
 	import getKeyboard from './utils/get-keyboard';
-	import { hasWon, processKey } from './utils/game-logic';
+	import { hasEnded, processKey } from './utils/game-logic';
 	import { _, locale } from 'svelte-i18n';
 	import { getValidWords } from '../words/get-words';
 	import Refresh from './refresh-icon.svelte';
@@ -16,7 +16,7 @@
 		$_('keyboard.third')
 	]);
 
-	$: won = hasWon(entries, answer);
+	$: gameEnded = hasEnded(entries, answer);
 
 	async function pressKey(key: string) {
 		const words = await getValidWords($locale);
@@ -57,7 +57,7 @@
 			{/each}
 		</div>
 	{/each}
-	{#if won}
+	{#if gameEnded}
 		<div
 			on:click={() => dispatchRefresh('refresh')}
 			class="absolute top-0 left-0 flex h-full w-full cursor-pointer items-center justify-center text-6xl text-green-800 backdrop-blur-sm"
