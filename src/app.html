@@ -2,9 +2,21 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="description" content="Svelte demo app" />
-		<link rel="icon" href="%svelte.assets%/favicon.png" />
+		<meta name="description" content="Fivlet, a word game in multiple languages" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="apple-touch-icon" sizes="180x180" href="%svelte.assets%/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="%svelte.assets%/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="%svelte.assets%/favicon-16x16.png" />
+		<link rel="manifest" href="%svelte.assets%/site.webmanifest" />
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLXBQRSBKN"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-CLXBQRSBKN');
+		</script>
 		%svelte.head%
 	</head>
 	<body>
