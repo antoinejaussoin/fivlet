@@ -27,15 +27,14 @@
 				message: $_(result.alert.message, { values: result.alert.parameters })
 			});
 		}
-		dispatchChange('change', result.entries);
+		dispatch('change', result.entries);
 	}
 
 	function handleKeypress(evt: KeyboardEvent) {
 		pressKey(evt.key);
 	}
 
-	const dispatchChange = createEventDispatcher<{ change: string[] }>();
-	const dispatchRefresh = createEventDispatcher();
+	const dispatch = createEventDispatcher<{ change: string[]; refresh: void }>();
 </script>
 
 <svelte:window on:keydown={handleKeypress} />
@@ -59,7 +58,7 @@
 	{/each}
 	{#if gameEnded}
 		<div
-			on:click={() => dispatchRefresh('refresh')}
+			on:click={() => dispatch('refresh')}
 			class="absolute top-0 left-0 flex h-full w-full cursor-pointer items-center justify-center text-6xl text-green-800 backdrop-blur-sm"
 		>
 			<Refresh />
