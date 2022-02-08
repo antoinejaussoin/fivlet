@@ -39,6 +39,7 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-static": "^1.0.0-next.26",
-		"svelte-i18n": "^3.3.13"
+		"svelte-i18n": "^3.3.13",
+		"svelte-outside-click": "^1.1.1"
 	}
 }

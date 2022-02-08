@@ -1720,6 +1720,11 @@ svelte-i18n@^3.3.13:
     sade "^1.7.4"
     tiny-glob "^0.2.6"
 
+svelte-outside-click@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/svelte-outside-click/-/svelte-outside-click-1.1.1.tgz#74ac668dc7e3def216fab7f8bd421e37284e7c1a"
+  integrity sha512-ndkeLX+U5kiENRgzunLOW7wJlYmV+iNRQ0oNamM7lUoHdr68SM2LkFFWrrSfBWlnFaGEvo0PkVXGOU1xzdrIdg==
+
 svelte-preprocess@^4.0.0, svelte-preprocess@^4.9.4:
   version "4.10.2"
   resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.10.2.tgz#2405689e57161916947b8360679051a56eddd5c6"
