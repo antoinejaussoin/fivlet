@@ -11,6 +11,7 @@
 	let possibleAnswers: string[];
 	let entries = [''];
 	let answer = '';
+	let dev = process.env.NODE_ENV === 'development';
 
 	$: {
 		async function changeLocale() {
@@ -40,7 +41,9 @@
 </svelte:head>
 
 <section>
-	{process.env.NODE_ENV === 'development' ? answer : ''}
+	{#if dev}
+		<div class="fixed top-3 left-3 text-gray-300">{answer}</div>
+	{/if}
 	<div class="fixed top-3 right-3">
 		<LanguagePicker
 			value={$locale}
@@ -49,7 +52,7 @@
 			}}
 		/>
 	</div>
-	<div class="mb-8 flex flex-col items-center justify-center">
+	<div class="mb-8 mt-10 flex flex-col items-center justify-center sm:mt-0">
 		<Header />
 		<Alert />
 		<Board {answer} {entries} />
