@@ -46,18 +46,16 @@
 			aria-labelledby="listbox-label"
 			on:click={() => (open = true)}
 		>
-			<span class="flex items-center">
-				<img
-					src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-					alt=""
-					class="h-6 w-6 flex-shrink-0 rounded-full"
-				/>
-				<span class="ml-3 block truncate">
-					<slot name="display" item={value}>
-						{JSON.stringify(value)}
-					</slot>
+			<slot name="display" item={value}>
+				<span class="flex items-center">
+					<span class="ml-3 block truncate">
+						<slot name="display" item={value}>
+							{JSON.stringify(value)}
+						</slot>
+					</span>
 				</span>
-			</span>
+			</slot>
+
 			<span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
 				<!-- Heroicon name: solid/selector -->
 				<svg
@@ -106,44 +104,16 @@
 						role="option"
 						on:click={() => handleSelection(option)}
 					>
-						<div class="flex items-center">
-							<img
-								src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-								alt=""
-								class="h-6 w-6 flex-shrink-0 rounded-full"
-							/>
-							<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-							<span class="ml-3 block truncate font-normal">
-								<slot name="option" {option}>
-									{JSON.stringify(option)}
-								</slot>
-							</span>
-						</div>
-
-						<!--
-	Checkmark, only display for selected option.
-
-	Highlighted: "text-white", Not Highlighted: "text-indigo-600"
--->
-						<span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
-							<!-- Heroicon name: solid/check -->
-							<svg
-								class="h-5 w-5"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 20 20"
-								fill="currentColor"
-								aria-hidden="true"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-									clip-rule="evenodd"
-								/>
-							</svg>
-						</span>
+						<slot name="option" {option}>
+							<div class="flex items-center">
+								<span class="ml-3 block truncate font-normal">
+									<slot name="option" {option}>
+										{JSON.stringify(option)}
+									</slot>
+								</span>
+							</div>
+						</slot>
 					</li>
-
-					<!-- More items... -->
 				{/each}
 			</ul>
 		{/if}
