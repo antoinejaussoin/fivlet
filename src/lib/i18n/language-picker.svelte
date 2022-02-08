@@ -5,10 +5,6 @@
 	import en from 'svg-country-flags/png100px/gb.png';
 	export let value = 'en';
 	const dispatch = createEventDispatcher<{ 'locale-changed': string }>();
-	const switchLocale: svelte.JSX.FormEventHandler<HTMLSelectElement> = (event) => {
-		event.preventDefault();
-		dispatch('locale-changed', event.currentTarget.value);
-	};
 
 	type Language = {
 		name: string;
@@ -25,6 +21,7 @@
 
 <Select
 	value={optionValue}
+	class="w-40"
 	{options}
 	on:select={(opt) => dispatch('locale-changed', opt.detail.value)}
 >
@@ -36,13 +33,18 @@
 			</span>
 		</span>
 	</div>
-	<div slot="option" let:option>
+	<div slot="option" let:option let:selected>
 		<div class="flex items-center">
 			<img src={option.icon} alt={option.name} class="h-6 w-6 flex-shrink-0 rounded-full" />
-			<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-			<span class="ml-3 block truncate font-normal">
+			<span class="ml-3 block truncate font-normal" class:selected>
 				{option.name}
 			</span>
 		</div>
 	</div>
 </Select>
+
+<style>
+	.selected {
+		@apply font-semibold;
+	}
+</style>

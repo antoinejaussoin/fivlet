@@ -13,12 +13,17 @@
 		};
 		option: {
 			option: T;
+			selected: boolean;
 		};
 	}
+
+	let clazz: string | undefined = undefined;
+	let open = false;
+
 	export let label: string | undefined = undefined;
 	export let value: T;
 	export let options: T[] = [];
-	let open = false;
+	export { clazz as class };
 
 	const dispatch = createEventDispatcher<{ select: T }>();
 
@@ -33,9 +38,11 @@
 </script>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div>
+<div class={clazz}>
 	{#if label}
-		<label id="listbox-label" class="block text-sm font-medium text-gray-700">{label}</label>
+		<label for="listbox-label" aria-label={label} class="block text-sm font-medium text-gray-700"
+			>{label}</label
+		>
 	{/if}
 	<div class="relative" use:clickOutside={handleOutsideClick}>
 		<button
@@ -43,15 +50,13 @@
 			class="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
 			aria-haspopup="listbox"
 			aria-expanded="true"
-			aria-labelledby="listbox-label"
+			id="listbox-label"
 			on:click={() => (open = true)}
 		>
 			<slot name="display" item={value}>
 				<span class="flex items-center">
 					<span class="ml-3 block truncate">
-						<slot name="display" item={value}>
-							{JSON.stringify(value)}
-						</slot>
+						{JSON.stringify(value)}
 					</span>
 				</span>
 			</slot>
@@ -104,12 +109,10 @@
 						role="option"
 						on:click={() => handleSelection(option)}
 					>
-						<slot name="option" {option}>
+						<slot name="option" {option} selected={option === value}>
 							<div class="flex items-center">
 								<span class="ml-3 block truncate font-normal">
-									<slot name="option" {option}>
-										{JSON.stringify(option)}
-									</slot>
+									{JSON.stringify(option)}
 								</span>
 							</div>
 						</slot>
