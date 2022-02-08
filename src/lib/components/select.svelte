@@ -37,7 +37,7 @@
 	{#if label}
 		<label id="listbox-label" class="block text-sm font-medium text-gray-700">{label}</label>
 	{/if}
-	<div class="relative mt-1" use:clickOutside={handleOutsideClick}>
+	<div class="relative" use:clickOutside={handleOutsideClick}>
 		<button
 			type="button"
 			class="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
@@ -99,7 +99,7 @@
 			Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
 		-->
 					<li
-						class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
+						class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
 						id="listbox-option-0"
 						role="option"
 						on:click={() => handleSelection(option)}

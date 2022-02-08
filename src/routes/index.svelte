@@ -41,7 +41,7 @@
 
 <section>
 	{process.env.NODE_ENV === 'development' ? answer : ''}
-	<div class="fixed top-0 right-0">
+	<div class="fixed top-3 right-3">
 		<LanguagePicker
 			value={$locale}
 			on:locale-changed={(e) => {
