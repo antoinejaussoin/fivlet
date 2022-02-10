@@ -31,6 +31,9 @@
 	}
 
 	function handleKeypress(evt: KeyboardEvent) {
+		if (evt.key === 'Shift' || evt.altKey || evt.metaKey || evt.ctrlKey) {
+			return;
+		}
 		pressKey(evt.key);
 	}
 
