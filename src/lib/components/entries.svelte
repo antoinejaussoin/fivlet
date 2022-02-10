@@ -42,7 +42,7 @@
 
 <svelte:window on:keydown={handleKeypress} />
 
-<div class="relative flex flex-col gap-2">
+<div class="relative flex flex-col gap-2 p-5">
 	{#each keyboard as row}
 		<div class="flex justify-center gap-2">
 			{#each row as key}
